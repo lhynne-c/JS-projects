@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StopWatch</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <h2>My JS StopWatch</h2>
+
+  <body>
+    <style>
+      body{
+       
+        background-image: url('clock1.png');
+              
+        background-size: cover;
+        background-repeat: no-repeat
+      }
+      
+      </style>
+      <div class="stopwatch">
+      <h1 id = "displayTime"> 00:00:00</h1>  
+          
+      <div class = "buttons">
+        <img src="play.jpg" onclick="watchStart()",width="70", height="70" >
+        <img src="stop.png" onclick="watchStop()",width="70", height="70"  >
+        <img src="reset.png" onclick= "watchReset()" ,width="70", height="70" >
+
+
+
+      </div>
+
+
+
+
+      <footer>
+        <p>❤️ by LynC </p>
+      </footer>
+
+      <script>
+        let [seconds, minutes, hours] = [0,0,0];
+        let displayTime = document.getElementById("displayTime")
+        let timer = null
+
+        function stopwatch(){
+          seconds++;
+          if(seconds == 60){
+            seconds=0;
+            minutes++;
+            if (minutes == 60){
+              minutes=0;
+              hours++;
+
+            }
+          }
+          let h = hours < 10 ? "0" + hours:hours;
+          let m = minutes < 10 ? "0" + minutes:minutes;
+          let s = seconds < 10 ? "0" + seconds:seconds;
+          
+
+          displayTime.innerHTML= h+":"+ m+":"+ s;
+        }
+           
+        
+        function watchStart(){
+            if (timer !== null)
+            {
+              clearInterval(timer);
+
+            }
+            timer = setInterval(stopwatch,1000);
+          }
+
+          function watchStop(){
+            clearInterval(timer);
+
+
+          }
+            
+          function watchReset(){
+            clearInterval(timer);
+            [seconds, minutes, hours] = [0,0,0];
+            displayTime.innerHTML= "00:00:00";
+          }
+
+      </script>
+
+
+
+    </div>
+  </body>
+</html>
